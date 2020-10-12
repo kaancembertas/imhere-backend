@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,11 +26,12 @@ namespace ImHere.Entities
         public string surname { get; set; }
 
         [Required]
-        [PasswordPropertyText]
         public string password { get; set; }
 
+        [Required]
         public int role { get; set; }
 
+        [Required]
         public string image_url { get; set; }
     }
 }

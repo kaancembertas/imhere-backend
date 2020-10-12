@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ImHere.Entities
 {
-    class Attendence
+    public class Attendence
     {
         [Key]
         public int user_id { get; set; }

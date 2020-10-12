@@ -1,0 +1,15 @@
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.DataAccess.deps.json
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.DataAccess.dll
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.csprojAssemblyReference.cache
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.AssemblyInfo.cs
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.Entities.dll
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.DataAccess.runtimeconfig.json
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.DataAccess.runtimeconfig.dev.json
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.DataAccess.pdb
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.Entities.pdb
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.csproj.CopyComplete
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.dll
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.pdb
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.genruntimeconfig.cache

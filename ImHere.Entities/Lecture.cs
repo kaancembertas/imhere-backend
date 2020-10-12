@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ImHere.Entities
 {
-    class Lecture
+    public class Lecture
     {
         [Key]
         public string code { get; set; }
