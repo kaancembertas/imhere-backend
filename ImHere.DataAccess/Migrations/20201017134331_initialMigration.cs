@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ImHere.DataAccess.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,21 +11,21 @@ namespace ImHere.DataAccess.Migrations
                 name: "Attendences",
                 columns: table => new
                 {
-                    user_id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    lecture_code = table.Column<string>(nullable: false),
+                    user_id = table.Column<int>(nullable: false),
+                    lecture_code = table.Column<string>(maxLength: 6, nullable: false),
+                    week = table.Column<int>(nullable: false),
                     status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Attendences", x => x.user_id);
+                    table.PrimaryKey("PK_Attendences", x => new { x.user_id, x.lecture_code, x.week });
                 });
 
             migrationBuilder.CreateTable(
                 name: "Lectures",
                 columns: table => new
                 {
-                    code = table.Column<string>(nullable: false),
+                    code = table.Column<string>(maxLength: 6, nullable: false),
                     name = table.Column<string>(maxLength: 50, nullable: false),
                     instructor_id = table.Column<int>(nullable: false),
                     start_date = table.Column<DateTime>(nullable: false)
@@ -36,16 +36,28 @@ namespace ImHere.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserLectures",
+                columns: table => new
+                {
+                    user_id = table.Column<int>(nullable: false),
+                    lecture_code = table.Column<string>(maxLength: 6, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserLectures", x => new { x.user_id, x.lecture_code });
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    no = table.Column<string>(maxLength: 9, nullable: false),
+                    no = table.Column<string>(maxLength: 9, nullable: true),
                     email = table.Column<string>(maxLength: 50, nullable: false),
                     name = table.Column<string>(maxLength: 50, nullable: false),
                     surname = table.Column<string>(maxLength: 50, nullable: false),
-                    password = table.Column<string>(nullable: false),
+                    password = table.Column<string>(maxLength: 60, nullable: false),
                     role = table.Column<int>(nullable: false, defaultValueSql: "0"),
                     image_url = table.Column<string>(nullable: false)
                 },
@@ -62,6 +74,9 @@ namespace ImHere.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Lectures");
+
+            migrationBuilder.DropTable(
+                name: "UserLectures");
 
             migrationBuilder.DropTable(
                 name: "Users");

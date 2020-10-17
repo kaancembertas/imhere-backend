@@ -11,6 +11,7 @@ namespace ImHere.Entities
         public int user_id { get; set; }
 
         [Required]
+        [StringLength(6)]
         public string lecture_code { get; set; }
 
         [Required]

@@ -22,18 +22,19 @@ namespace ImHere.DataAccess.Migrations
             modelBuilder.Entity("ImHere.Entities.Attendence", b =>
                 {
                     b.Property<int>("user_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("lecture_code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(6);
+
+                    b.Property<int>("week")
+                        .HasColumnType("int");
 
                     b.Property<int>("status")
                         .HasColumnType("int");
 
-                    b.HasKey("user_id");
+                    b.HasKey("user_id", "lecture_code", "week");
 
                     b.ToTable("Attendences");
                 });
