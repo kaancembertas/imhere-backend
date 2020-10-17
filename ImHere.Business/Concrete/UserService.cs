@@ -72,12 +72,18 @@ namespace ImHere.Business.Concrete
         {
             user.role = 0;
             user.password = BC.HashPassword(user.password);
+            user.no = user.no.ToLower();
             await _userRepository.CreateUser(user);
         }
 
         public async Task<UserInfoDto> GetUserInfoById(int id)
         {
             return await _userRepository.GetUserInfoById(id);
+        }
+
+        public async Task<User> GetUserByNo(string no)
+        {
+            return await _userRepository.GetUserByNo(no.ToLower());
         }
     }
 }
