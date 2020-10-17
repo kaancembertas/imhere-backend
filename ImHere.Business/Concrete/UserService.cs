@@ -43,17 +43,18 @@ namespace ImHere.Business.Concrete
             bool isVerifiedPassword = BC.Verify(model.password, user.password);
             if (!isVerifiedPassword)
                 return null;
-            
+
 
             // Authentication başarılı
-            var token = generateJwtToken(user);
-            var response = new AuthenticationResponse(user, token);
+            DateTime expireDate = DateTime.UtcNow.AddMinutes(1);
+            var token = generateJwtToken(user,expireDate);
+            var response = new AuthenticationResponse(token,expireDate);
 
             return response;
         }
 
 
-        private string generateJwtToken(User user)
+        private string generateJwtToken(User user,DateTime expireDate)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -63,10 +64,11 @@ namespace ImHere.Business.Concrete
                 {
                     new Claim("user_id", user.id.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = expireDate,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            
             return tokenHandler.WriteToken(token);
         }
 

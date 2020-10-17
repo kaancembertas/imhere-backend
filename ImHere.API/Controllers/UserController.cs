@@ -80,7 +80,7 @@ namespace ImHere.API.Controllers
             return Ok(response);
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         [Route("[action]")]
         [ProducesResponseType(typeof(UserInfoDto), 200)]
@@ -96,7 +96,7 @@ namespace ImHere.API.Controllers
             return Ok(user);
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         [Route("[action]")]
         [ProducesResponseType(typeof(List<LectureInfoDto>), 200)]
@@ -108,7 +108,7 @@ namespace ImHere.API.Controllers
             return Ok(userLectures);
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet]
         [Route("[action]/{lectureCode}")]
         [ProducesResponseType(typeof(List<AttendenceInfoDto>), 200)]
