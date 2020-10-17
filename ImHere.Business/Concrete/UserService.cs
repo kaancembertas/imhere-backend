@@ -46,10 +46,6 @@ namespace ImHere.Business.Concrete
             return response;
         }
 
-        public async Task<User> GetUserByEmail(string email)
-        {
-            return await _userRepository.GetUserByEmail(email);
-        }
 
         private string generateJwtToken(User user)
         {
@@ -72,7 +68,7 @@ namespace ImHere.Business.Concrete
         {
             user.role = 0;
             user.password = BC.HashPassword(user.password);
-            user.no = user.no.ToLower();
+            user.email = user.email.ToLower();
             await _userRepository.CreateUser(user);
         }
 
@@ -81,9 +77,26 @@ namespace ImHere.Business.Concrete
             return await _userRepository.GetUserInfoById(id);
         }
 
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _userRepository.GetUserByEmail(email.ToLower());
+        }
+
         public async Task<User> GetUserByNo(string no)
         {
-            return await _userRepository.GetUserByNo(no.ToLower());
+            return await _userRepository.GetUserByNo(no);
+        }
+
+        public async Task<bool> IsEmailExists(string email)
+        {
+            var user = await GetUserByEmail(email);
+            return user != null;
+        }
+
+        public async Task<bool> IsNoExists(string no)
+        {
+            var user = await GetUserByNo(no);
+            return user != null;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ImHere.Entities
 {
@@ -10,7 +11,7 @@ namespace ImHere.Entities
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
-        [Required]
+        [AllowNull]
         [StringLength(9)]
         public string no { get; set; }
 

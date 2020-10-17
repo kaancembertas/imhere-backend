@@ -35,16 +35,16 @@ namespace ImHere.DataAccess.Concrete
         {
             using (var imHereDbContext = new ImHereDbContext())
             {
-                User user = await imHereDbContext.Users.FirstAsync(u => u.id == id);
+                User user = await imHereDbContext.Users.FirstOrDefaultAsync(u => u.id == id);
                 return new UserInfoDto(user);
             }
         }
 
         public async Task<User> GetUserByNo(string no)
         {
-            using(var imHereDbContext = new ImHereDbContext())
+            using (var imHereDbContext = new ImHereDbContext())
             {
-                return await imHereDbContext.Users.FirstAsync(u => u.no == no);
+                return await imHereDbContext.Users.FirstOrDefaultAsync(u => u.no == no && u.no != null);
             }
         }
     }

@@ -8,6 +8,7 @@ namespace ImHere.Entities
     public class Lecture
     {
         [Key]
+        [StringLength(6)]
         public string code { get; set; }
 
         [StringLength(50)]

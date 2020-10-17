@@ -33,10 +33,24 @@ namespace ImHere.API.Controllers
         [AllowAnonymous]
         [HttpPost("[action]")]
         [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(ApiResponse),400)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest user)
         {
-            // TODO: Check Email
-            // TODO: Check No
+            bool IsEMailExists = await _userService.IsEmailExists(user.email);
+            bool IsNoExists = await _userService.IsNoExists(user.no);
+
+            if (IsEMailExists)
+            {
+                var err = new ApiResponse("Already registered with this Email!");
+                return BadRequest(err);
+            }
+
+            if (IsNoExists)
+            {
+                var err = new ApiResponse("Already registered with this No!");
+                return BadRequest(err);
+            }
+
 
             User _user = _mapper.Map<User>(user);
             await _userService.CreateUser(_user);

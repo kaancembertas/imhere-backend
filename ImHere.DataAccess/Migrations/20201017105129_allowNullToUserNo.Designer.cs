@@ -4,14 +4,16 @@ using ImHere.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ImHere.DataAccess.Migrations
 {
     [DbContext(typeof(ImHereDbContext))]
-    partial class ImHereDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201017105129_allowNullToUserNo")]
+    partial class allowNullToUserNo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,8 +43,7 @@ namespace ImHere.DataAccess.Migrations
             modelBuilder.Entity("ImHere.Entities.Lecture", b =>
                 {
                     b.Property<string>("code")
-                        .HasColumnType("nvarchar(6)")
-                        .HasMaxLength(6);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("instructor_id")
                         .HasColumnType("int");
@@ -103,20 +104,6 @@ namespace ImHere.DataAccess.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ImHere.Entities.UserLecture", b =>
-                {
-                    b.Property<int>("user_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("lecture_code")
-                        .HasColumnType("nvarchar(6)")
-                        .HasMaxLength(6);
-
-                    b.HasKey("user_id", "lecture_code");
-
-                    b.ToTable("UserLectures");
                 });
 #pragma warning restore 612, 618
         }
