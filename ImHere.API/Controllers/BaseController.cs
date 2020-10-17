@@ -17,8 +17,6 @@ namespace ImHere.API.Controllers
             var UserId = httpContextAccessor.HttpContext.Items["UserId"];
             if (UserId != null)
                 AutenticatedUser = new AuthenticatedUserData((int)UserId);
-
-
         }
     }
 }

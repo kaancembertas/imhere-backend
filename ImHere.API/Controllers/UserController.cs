@@ -109,8 +109,8 @@ namespace ImHere.API.Controllers
         }
 
         [Authorize]
-        [HttpGet("{lectureCode}")]
-        [Route("[action]")]
+        [HttpGet]
+        [Route("[action]/{lectureCode}")]
         [ProducesResponseType(typeof(List<AttendenceInfoDto>), 200)]
         [ProducesResponseType(typeof(ApiResponse), 404)]
         [ProducesResponseType(401)]
