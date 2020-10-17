@@ -1,0 +1,26 @@
+﻿using ImHere.DataAccess.Abstract;
+using ImHere.Entities;
+using ImHere.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ImHere.DataAccess.Concrete
+{
+    public class AttendenceRepository : IAttendenceRepository
+    {
+        public async Task<List<Attendence>> GetAttendencesInfo(int userId, string lectureCode)
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                return await imHereDbContext.Attendences.Where(a =>
+                a.user_id == userId &&
+                a.lecture_code == lectureCode)
+                .ToListAsync();
+            }
+        }
+    }
+}

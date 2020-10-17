@@ -18,22 +18,28 @@ namespace ImHere.API.Controllers
     public class UserController : BaseController
     {
         private IUserService _userService;
+        private ILectureService _lectureService;
+        private IAttendenceService _attendenceService;
         private readonly IMapper _mapper;
 
         public UserController(
             IUserService userService,
+            ILectureService lectureService,
+            IAttendenceService attendenceService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper)
             : base(httpContextAccessor)
         {
             _userService = userService;
+            _lectureService = lectureService;
+            _attendenceService = attendenceService;
             _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost("[action]")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(typeof(ApiResponse),400)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest user)
         {
             bool IsEMailExists = await _userService.IsEmailExists(user.email);
@@ -93,13 +99,31 @@ namespace ImHere.API.Controllers
         [Authorize]
         [HttpGet]
         [Route("[action]")]
-        [ProducesResponseType(401)]
         [ProducesResponseType(typeof(List<LectureInfoDto>), 200)]
+        [ProducesResponseType(401)]
         public async Task<IActionResult> Lectures()
         {
             int userId = AutenticatedUser.Id;
-            var userLectures = await _userService.GetUserLectures(userId);
+            var userLectures = await _lectureService.GetUserLectures(userId);
             return Ok(userLectures);
+        }
+
+        [Authorize]
+        [HttpGet("{lectureCode}")]
+        [Route("[action]")]
+        [ProducesResponseType(typeof(List<AttendenceInfoDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 404)]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> Attendence(string lectureCode)
+        {
+            bool isLectureExists = await _lectureService.IsLectureExists(lectureCode);
+            if (!isLectureExists)
+                return NotFound(new ApiResponse("Lecture could not be found!"));
+
+            int userId = AutenticatedUser.Id;
+            List<AttendenceInfoDto> attendenceInfos = await _attendenceService.GetAttendencesInfo(userId, lectureCode);
+            return Ok(attendenceInfos);
+
         }
     }
 }

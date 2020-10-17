@@ -79,6 +79,9 @@ namespace ImHere.API
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserLectureRepository, UserLectureRepository>();
             services.AddSingleton<ILectureRepository, LectureRepository>();
+            services.AddSingleton<IAttendenceRepository, AttendenceRepository>();
+            services.AddSingleton<ILectureService, LectureService>();
+            services.AddSingleton<IAttendenceService, AttendenceService>();
             services.AddSingleton(mapper);
         }
 
