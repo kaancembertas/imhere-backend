@@ -8,7 +8,11 @@ C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\bin\Debug\netcoreapp3.1\
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.csprojAssemblyReference.cache
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.AssemblyInfoInputs.cache
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.AssemblyInfo.cs
-C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.csproj.CoreCompileInputs.cache
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.csproj.CopyComplete
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.dll
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.pdb
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\bin\Debug\netcoreapp3.1\ImHere.Helpers.dll
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\bin\Debug\netcoreapp3.1\ImHere.Models.dll
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\bin\Debug\netcoreapp3.1\ImHere.Helpers.pdb
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\bin\Debug\netcoreapp3.1\ImHere.Models.pdb
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.Business\obj\Debug\netcoreapp3.1\ImHere.Business.csproj.CoreCompileInputs.cache

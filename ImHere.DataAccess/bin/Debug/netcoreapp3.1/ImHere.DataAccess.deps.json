@@ -9,6 +9,7 @@
       "ImHere.DataAccess/1.0.0": {
         "dependencies": {
           "ImHere.Entities": "1.0.0",
+          "ImHere.Models": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.8",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.8"
         },
@@ -1037,6 +1038,14 @@
         "runtime": {
           "ImHere.Entities.dll": {}
         }
+      },
+      "ImHere.Models/1.0.0": {
+        "dependencies": {
+          "ImHere.Entities": "1.0.0"
+        },
+        "runtime": {
+          "ImHere.Models.dll": {}
+        }
       }
     }
   },
@@ -1747,6 +1756,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "ImHere.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ImHere.Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

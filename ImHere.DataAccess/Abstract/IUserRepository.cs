@@ -1,4 +1,5 @@
 ﻿using ImHere.Entities;
+using ImHere.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,8 @@ namespace ImHere.DataAccess.Abstract
     public interface IUserRepository
     {
         Task CreateUser(User user);
-        Task<List<User>> GetAllUsers();
+        Task<UserInfoDto> GetUserInfoById(int Id);
+        Task<User> GetUserByEmail(string email);
+        Task<User> GetUserByNo(string no);
     }
 }

@@ -1505,6 +1505,19 @@
         "runtime": {
           "bin/placeholder/ImHere.Entities.dll": {}
         }
+      },
+      "ImHere.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "ImHere.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ImHere.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ImHere.Models.dll": {}
+        }
       }
     }
   },
@@ -5726,11 +5739,17 @@
       "type": "project",
       "path": "../ImHere.Entities/ImHere.Entities.csproj",
       "msbuildProject": "../ImHere.Entities/ImHere.Entities.csproj"
+    },
+    "ImHere.Models/1.0.0": {
+      "type": "project",
+      "path": "../ImHere.Models/ImHere.Models.csproj",
+      "msbuildProject": "../ImHere.Models/ImHere.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "ImHere.Entities >= 1.0.0",
+      "ImHere.Models >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.8",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.8"
     ]
@@ -5763,6 +5782,9 @@
           "projectReferences": {
             "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj": {
               "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj"
+            },
+            "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj": {
+              "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj"
             }
           }
         }

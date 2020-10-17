@@ -29,6 +29,9 @@
             "projectReferences": {
               "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Business\\ImHere.Business.csproj": {
                 "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Business\\ImHere.Business.csproj"
+              },
+              "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj": {
+                "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj"
               }
             }
           }
@@ -42,6 +45,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[13.8.2, )"
@@ -97,6 +108,12 @@
               },
               "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj": {
                 "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj"
+              },
+              "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Helpers\\ImHere.Helpers.csproj": {
+                "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Helpers\\ImHere.Helpers.csproj"
+              },
+              "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj": {
+                "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj"
               }
             }
           }
@@ -109,6 +126,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "BCrypt.Net": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -153,6 +176,9 @@
             "projectReferences": {
               "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj": {
                 "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj"
+              },
+              "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj": {
+                "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj"
               }
             }
           }
@@ -219,6 +245,114 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Helpers\\ImHere.Helpers.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Helpers\\ImHere.Helpers.csproj",
+        "projectName": "ImHere.Helpers",
+        "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Helpers\\ImHere.Helpers.csproj",
+        "packagesPath": "C:\\Users\\Kaan-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Helpers\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Kaan-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj",
+        "projectName": "ImHere.Models",
+        "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\ImHere.Models.csproj",
+        "packagesPath": "C:\\Users\\Kaan-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Kaan-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj": {
+                "projectPath": "C:\\Users\\Kaan-PC\\Desktop\\imhere-backend\\ImHere.Entities\\ImHere.Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

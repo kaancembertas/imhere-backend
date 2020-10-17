@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ImHere.DataAccess.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,7 +46,7 @@ namespace ImHere.DataAccess.Migrations
                     name = table.Column<string>(maxLength: 50, nullable: false),
                     surname = table.Column<string>(maxLength: 50, nullable: false),
                     password = table.Column<string>(nullable: false),
-                    role = table.Column<int>(nullable: false),
+                    role = table.Column<int>(nullable: false, defaultValueSql: "0"),
                     image_url = table.Column<string>(nullable: false)
                 },
                 constraints: table =>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImHere.DataAccess.Migrations
 {
     [DbContext(typeof(ImHereDbContext))]
-    [Migration("20201012185931_initialCreate")]
-    partial class initialCreate
+    [Migration("20201016164427_initial-create")]
+    partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,7 +92,9 @@ namespace ImHere.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("role")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("surname")
                         .IsRequired()

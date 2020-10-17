@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ImHere.DataAccess\ImHere.DataAccess.csproj" />
     <ProjectReference Include="..\ImHere.Entities\ImHere.Entities.csproj" />
+    <ProjectReference Include="..\ImHere.Helpers\ImHere.Helpers.csproj" />
+    <ProjectReference Include="..\ImHere.Models\ImHere.Models.csproj" />
   </ItemGroup>
 
 </Project>

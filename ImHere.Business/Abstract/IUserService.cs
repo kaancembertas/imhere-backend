@@ -1,4 +1,5 @@
 ﻿using ImHere.Entities;
+using ImHere.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,9 @@ namespace ImHere.Business.Abstract
     public interface IUserService
     {
         public Task CreateUser(User user);
-        public Task<List<User>> GetAllUsers();
+        public Task<AuthenticationResponse> Authenticate(AuthenticationRequest model);
+        public Task<UserInfoDto> GetUserInfoById(int id);
+        public Task<User> GetUserByEmail(string email);
+        public Task<User> GetUserByNo(string no);
     }
 }

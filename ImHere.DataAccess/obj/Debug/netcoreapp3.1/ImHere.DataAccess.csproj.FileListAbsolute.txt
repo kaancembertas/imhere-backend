@@ -13,3 +13,5 @@ C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.dll
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.pdb
 C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\obj\Debug\netcoreapp3.1\ImHere.DataAccess.genruntimeconfig.cache
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.Models.dll
+C:\Users\Kaan-PC\Desktop\imhere-backend\ImHere.DataAccess\bin\Debug\netcoreapp3.1\ImHere.Models.pdb

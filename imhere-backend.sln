@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.Entities", "ImHere.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.DataAccess", "ImHere.DataAccess\ImHere.DataAccess.csproj", "{FA1D0E73-6350-4BDB-8D8C-40CD8228C2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImHere.Business", "ImHere.Business\ImHere.Business.csproj", "{08EBB36C-B6C0-42BC-A856-361D9EC0AE9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.Business", "ImHere.Business\ImHere.Business.csproj", "{08EBB36C-B6C0-42BC-A856-361D9EC0AE9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImHere.API", "ImHere.API\ImHere.API.csproj", "{EF933F75-24C9-43C2-9F1F-774EBB2201D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.API", "ImHere.API\ImHere.API.csproj", "{EF933F75-24C9-43C2-9F1F-774EBB2201D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.Models", "ImHere.Models\ImHere.Models.csproj", "{A60E98F3-136E-4323-A6CF-CEF2B98B03D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImHere.Helpers", "ImHere.Helpers\ImHere.Helpers.csproj", "{CB6DE1B0-3621-4473-8890-693491D5ABAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{EF933F75-24C9-43C2-9F1F-774EBB2201D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF933F75-24C9-43C2-9F1F-774EBB2201D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF933F75-24C9-43C2-9F1F-774EBB2201D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A60E98F3-136E-4323-A6CF-CEF2B98B03D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60E98F3-136E-4323-A6CF-CEF2B98B03D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A60E98F3-136E-4323-A6CF-CEF2B98B03D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60E98F3-136E-4323-A6CF-CEF2B98B03D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB6DE1B0-3621-4473-8890-693491D5ABAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6DE1B0-3621-4473-8890-693491D5ABAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6DE1B0-3621-4473-8890-693491D5ABAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6DE1B0-3621-4473-8890-693491D5ABAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
