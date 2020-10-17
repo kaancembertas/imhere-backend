@@ -25,6 +25,9 @@ namespace ImHere.DataAccess
                 .Property(l => l.code)
                 .HasMaxLength(6);
 
+            modelBuilder.Entity<Attendence>()
+                .HasKey(a => new { a.user_id, a.lecture_code, a.week });
+
             base.OnModelCreating(modelBuilder);
         }
 

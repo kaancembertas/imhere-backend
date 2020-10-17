@@ -89,5 +89,17 @@ namespace ImHere.API.Controllers
             }
             return Ok(user);
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("[action]")]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(typeof(List<LectureInfoDto>), 200)]
+        public async Task<IActionResult> Lectures()
+        {
+            int userId = AutenticatedUser.Id;
+            var userLectures = await _userService.GetUserLectures(userId);
+            return Ok(userLectures);
+        }
     }
 }

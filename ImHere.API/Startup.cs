@@ -11,6 +11,7 @@ using ImHere.Business.Abstract;
 using ImHere.Business.Concrete;
 using ImHere.DataAccess.Abstract;
 using ImHere.DataAccess.Concrete;
+using ImHere.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -76,6 +77,8 @@ namespace ImHere.API
             // Singletons
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IUserLectureRepository, UserLectureRepository>();
+            services.AddSingleton<ILectureRepository, LectureRepository>();
             services.AddSingleton(mapper);
         }
 

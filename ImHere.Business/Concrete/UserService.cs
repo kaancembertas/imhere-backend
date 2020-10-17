@@ -18,14 +18,21 @@ namespace ImHere.Business.Concrete
     public class UserService : IUserService
     {
         private IUserRepository _userRepository;
+        private IUserLectureRepository _userLectureRepository;
+        private ILectureRepository _lectureRepository;
         private readonly AppSettings _appSettings;
 
 
-        public UserService(IUserRepository userRepository, IOptions<AppSettings> appSettings)
+        public UserService(
+            IUserRepository userRepository, 
+            IUserLectureRepository userLectureRepository,
+            ILectureRepository lectureRepository,
+            IOptions<AppSettings> appSettings)
         {
             _userRepository = userRepository;
+            _userLectureRepository = userLectureRepository;
+            _lectureRepository = lectureRepository;
             _appSettings = appSettings.Value;
-
         }
 
         public async Task<AuthenticationResponse> Authenticate(AuthenticationRequest model)
@@ -97,6 +104,27 @@ namespace ImHere.Business.Concrete
         {
             var user = await GetUserByNo(no);
             return user != null;
+        }
+
+        public async Task<User> GetUserById(int id)
+        {
+            return await _userRepository.GetUserById(id);
+        }
+
+        public async Task<List<LectureInfoDto>> GetUserLectures(int id)
+        {
+            List<LectureInfoDto> lectureInfos = new List<LectureInfoDto>();
+            List<UserLecture> userLectures = await _userLectureRepository.GetUserLecturesByUserId(id);
+
+            foreach (UserLecture userLecture in userLectures)
+            {
+                Lecture lecture = await _lectureRepository.GetLectureByCode(userLecture.lecture_code);
+                User instructor = await _userRepository.GetUserById(lecture.instructor_id);
+                lectureInfos.Add(new LectureInfoDto(lecture, instructor));
+            }
+
+            return lectureInfos;
+
         }
     }
 }

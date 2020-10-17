@@ -47,5 +47,13 @@ namespace ImHere.DataAccess.Concrete
                 return await imHereDbContext.Users.FirstOrDefaultAsync(u => u.no == no && u.no != null);
             }
         }
+
+        public async Task<User> GetUserById(int id)
+        {
+            using(var imHereDbContext = new ImHereDbContext())
+            {
+                return await imHereDbContext.Users.FirstOrDefaultAsync(u => u.id == id);
+            }
+        }
     }
 }

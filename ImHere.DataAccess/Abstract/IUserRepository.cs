@@ -11,6 +11,7 @@ namespace ImHere.DataAccess.Abstract
     {
         Task CreateUser(User user);
         Task<UserInfoDto> GetUserInfoById(int Id);
+        Task<User> GetUserById(int id);
         Task<User> GetUserByEmail(string email);
         Task<User> GetUserByNo(string no);
     }

@@ -8,11 +8,13 @@ namespace ImHere.Entities
 {
     public class Attendence
     {
-        [Key]
         public int user_id { get; set; }
 
         [Required]
         public string lecture_code { get; set; }
+
+        [Required]
+        public int week { get; set; }
 
         // 0: Not Processed, 1: Joined, 2: Not Joined
         [Required]
