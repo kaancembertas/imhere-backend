@@ -38,7 +38,7 @@ namespace ImHere.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest user)
         {
@@ -60,7 +60,7 @@ namespace ImHere.API.Controllers
 
             User _user = _mapper.Map<User>(user);
             await _userService.CreateUser(_user);
-            return Ok();
+            return NoContent();
         }
 
         [Authorize]

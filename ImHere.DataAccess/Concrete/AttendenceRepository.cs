@@ -19,7 +19,8 @@ namespace ImHere.DataAccess.Concrete
                 return await imHereDbContext.Attendences.Where(a =>
                 a.user_id == userId &&
                 a.lecture_code == lectureCode)
-                .ToListAsync();
+                    .OrderBy(a => a.week)
+                    .ToListAsync();
             }
         }
     }
