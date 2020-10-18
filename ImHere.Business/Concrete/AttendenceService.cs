@@ -28,6 +28,14 @@ namespace ImHere.Business.Concrete
                 attendenceInfoList.Add(new AttendenceInfoDto(attendence));
             }
 
+            for(int i = 0; i < 14 - attendences.Count; i++)
+            {
+                Attendence missingAttendence = new Attendence();
+                missingAttendence.week = attendences.Count + 1 + i;
+                missingAttendence.status = 0;
+                attendenceInfoList.Add(new AttendenceInfoDto(missingAttendence));
+            }
+
             return attendenceInfoList;
         }
     }
