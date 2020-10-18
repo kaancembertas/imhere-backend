@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using ImHere.API.Helpers;
 using ImHere.API.Mappings;
@@ -11,12 +8,9 @@ using ImHere.Business.Abstract;
 using ImHere.Business.Concrete;
 using ImHere.DataAccess.Abstract;
 using ImHere.DataAccess.Concrete;
-using ImHere.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,7 +39,7 @@ namespace ImHere.API
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
-            // JWT authentication Aayarlamasý
+            // JWT authentication Ayarlamasý
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
@@ -76,6 +70,12 @@ namespace ImHere.API
             IMapper mapper = mappingConfig.CreateMapper();
 
             // Singletons
+            ConfigureSingletons(services);
+            services.AddSingleton(mapper);
+        }
+
+        private void ConfigureSingletons(IServiceCollection services)
+        {
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserLectureRepository, UserLectureRepository>();
@@ -83,7 +83,7 @@ namespace ImHere.API
             services.AddSingleton<IAttendenceRepository, AttendenceRepository>();
             services.AddSingleton<ILectureService, LectureService>();
             services.AddSingleton<IAttendenceService, AttendenceService>();
-            services.AddSingleton(mapper);
+            services.AddSingleton<IAuthenticationService, AuthenticationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -63,24 +63,7 @@ namespace ImHere.API.Controllers
             return Ok();
         }
 
-        [AllowAnonymous]
-        [HttpPost("[action]")]
-        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<IActionResult> Authenticate(AuthenticationRequest authenticationModel)
-        {
-            AuthenticationResponse response = await _userService.Authenticate(authenticationModel);
-
-            if (response == null)
-            {
-                var error = new ApiResponse("Incorrect Email or Password");
-                return BadRequest(error);
-            }
-
-            return Ok(response);
-        }
-
-        [Authorize(AuthenticationSchemes = "Bearer")]
+        [Authorize]
         [HttpGet]
         [Route("[action]")]
         [ProducesResponseType(typeof(UserInfoDto), 200)]
@@ -96,7 +79,7 @@ namespace ImHere.API.Controllers
             return Ok(user);
         }
 
-        [Authorize(AuthenticationSchemes = "Bearer")]
+        [Authorize]
         [HttpGet]
         [Route("[action]")]
         [ProducesResponseType(typeof(List<LectureInfoDto>), 200)]
@@ -108,7 +91,7 @@ namespace ImHere.API.Controllers
             return Ok(userLectures);
         }
 
-        [Authorize(AuthenticationSchemes = "Bearer")]
+        [Authorize]
         [HttpGet]
         [Route("[action]/{lectureCode}")]
         [ProducesResponseType(typeof(List<AttendenceInfoDto>), 200)]
