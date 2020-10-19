@@ -8,6 +8,6 @@ namespace ImHere.DataAccess.Abstract
 {
     public interface IUserLectureRepository
     {
-        public Task<List<UserLecture>> GetUserLecturesByUserId(int id);
+        public Task<List<UserLecture>> GetStudentLecturesByUserId(int id);
     }
 }

@@ -87,7 +87,15 @@ namespace ImHere.API.Controllers
         public async Task<IActionResult> Lectures()
         {
             int userId = AutenticatedUser.Id;
-            var userLectures = await _lectureService.GetUserLectures(userId);
+            User user = await _userService.GetUserById(userId);
+            
+            if(user.role == UserConstants.INSTRUCTOR)
+            {
+                var instructorLectures = await _lectureService.GetInstructorLectures(userId);
+                return Ok(instructorLectures);
+            }
+
+            var userLectures = await _lectureService.GetStudentLectures(userId);
             return Ok(userLectures);
         }
 
@@ -104,6 +112,12 @@ namespace ImHere.API.Controllers
                 return NotFound(new ApiResponse("Lecture could not be found!"));
 
             int userId = AutenticatedUser.Id;
+            User user = await _userService.GetUserById(userId);
+            if(user.role == UserConstants.INSTRUCTOR)
+            {
+                // TODO Fix this
+                return Ok(new List<AttendenceInfoDto>());
+            }
             List<AttendenceInfoDto> attendenceInfos = await _attendenceService.GetAttendencesInfo(userId, lectureCode);
             return Ok(attendenceInfos);
 

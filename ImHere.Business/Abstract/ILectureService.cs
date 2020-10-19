@@ -8,7 +8,8 @@ namespace ImHere.Business.Abstract
 {
     public interface ILectureService
     {
-        public Task<List<LectureInfoDto>> GetUserLectures(int id);
+        public Task<List<LectureInfoDto>> GetStudentLectures(int id);
+        public Task<List<LectureInfoDto>> GetInstructorLectures(int id);
         public Task<bool> IsLectureExists(string lectureCode);
     }
 }

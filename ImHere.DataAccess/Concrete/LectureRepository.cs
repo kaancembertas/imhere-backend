@@ -4,6 +4,7 @@ using ImHere.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,14 @@ namespace ImHere.DataAccess.Concrete
             using (var imHereDbContext = new ImHereDbContext())
             {
                 return await imHereDbContext.Lectures.FirstOrDefaultAsync(l => l.code == code);
+            }
+        }
+
+        public async Task<List<Lecture>> GetInstructorLecturesById(int userId)
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                return await imHereDbContext.Lectures.Where(l => l.instructor_id == userId).ToListAsync();
             }
         }
 

@@ -25,16 +25,30 @@ namespace ImHere.Business.Concrete
             _userRepository = userRepository;
         }
 
-        public async Task<List<LectureInfoDto>> GetUserLectures(int id)
+        public async Task<List<LectureInfoDto>> GetStudentLectures(int userId)
         {
             List<LectureInfoDto> lectureInfos = new List<LectureInfoDto>();
-            List<UserLecture> userLectures = await _userLectureRepository.GetUserLecturesByUserId(id);
+            List<UserLecture> userLectures = await _userLectureRepository.GetStudentLecturesByUserId(userId);
 
             foreach (UserLecture userLecture in userLectures)
             {
                 Lecture lecture = await _lectureRepository.GetLectureByCode(userLecture.lecture_code);
                 User instructor = await _userRepository.GetUserById(lecture.instructor_id);
                 if (lecture == null || instructor == null) continue;
+                lectureInfos.Add(new LectureInfoDto(lecture, instructor));
+            }
+
+            return lectureInfos;
+        }
+
+        public async Task<List<LectureInfoDto>> GetInstructorLectures(int userId)
+        {
+            List<LectureInfoDto> lectureInfos = new List<LectureInfoDto>();
+            List<Lecture> lectures = await _lectureRepository.GetInstructorLecturesById(userId);
+            User instructor = await _userRepository.GetUserById(userId);
+
+            foreach (Lecture lecture in lectures)
+            {
                 lectureInfos.Add(new LectureInfoDto(lecture, instructor));
             }
 

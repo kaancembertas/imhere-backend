@@ -11,13 +11,12 @@ namespace ImHere.DataAccess.Concrete
 {
     public class UserLectureRepository : IUserLectureRepository
     {
-        public async Task<List<UserLecture>> GetUserLecturesByUserId(int id)
+        public async Task<List<UserLecture>> GetStudentLecturesByUserId(int userId)
         {
             using (var imHereDbContext = new ImHereDbContext())
             {
-                return await imHereDbContext.UserLectures.Where(ul => ul.user_id == id).ToListAsync();
+                return await imHereDbContext.UserLectures.Where(ul => ul.user_id == userId).ToListAsync();
             }
         }
-
     }
 }

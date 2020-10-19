@@ -32,7 +32,7 @@ namespace ImHere.Business.Concrete
             {
                 Attendence missingAttendence = new Attendence();
                 missingAttendence.week = attendences.Count + 1 + i;
-                missingAttendence.status = 0;
+                missingAttendence.status = AttendenceConstants.NOT_PROCESSED;
                 attendenceInfoList.Add(new AttendenceInfoDto(missingAttendence));
             }
 
