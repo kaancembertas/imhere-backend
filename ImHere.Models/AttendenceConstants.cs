@@ -9,5 +9,8 @@ namespace ImHere.Models
         public static int NOT_PROCESSED { get { return 0; } }
         public static int JOINED { get { return 1; } }
         public static int NOT_JOINED { get { return 2; } }
+
+        public static int NOT_COMPLETED { get { return 0; } }
+        public static int COMPLETED { get { return 1; } }
     }
 }

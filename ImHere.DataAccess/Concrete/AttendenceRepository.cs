@@ -23,5 +23,19 @@ namespace ImHere.DataAccess.Concrete
                     .ToListAsync();
             }
         }
+
+        public async Task<List<int>> GetCompletedAttendenceWeekInfo(string lectureCode)
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                var weeks = await imHereDbContext.Attendences
+                    .Where(a => a.lecture_code == lectureCode)
+                    .Select(a => a.week)
+                    .Distinct()
+                    .ToListAsync();
+
+                return weeks;
+            }
+        }
     }
 }

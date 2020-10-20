@@ -9,5 +9,6 @@ namespace ImHere.Business.Abstract
     public interface IAttendenceService
     {
         public Task<List<AttendenceInfoDto>> GetAttendencesInfo(int userId, string lectureCode);
+        public Task<List<AttendenceInfoDto>> GetAttendenceInfoForInstructor(string lectureCode);
     }
 }

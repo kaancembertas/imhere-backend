@@ -10,5 +10,8 @@ namespace ImHere.DataAccess.Abstract
     public interface IAttendenceRepository
     {
         public Task<List<Attendence>> GetAttendencesInfo(int userId, string lectureCode);
+
+        // Returns list of week that the attendence is processed for spesific lecture
+        public Task<List<int>> GetCompletedAttendenceWeekInfo(string lectureCode);
     }
 }

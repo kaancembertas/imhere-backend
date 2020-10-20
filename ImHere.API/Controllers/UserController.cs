@@ -113,14 +113,15 @@ namespace ImHere.API.Controllers
 
             int userId = AutenticatedUser.Id;
             User user = await _userService.GetUserById(userId);
+
             if(user.role == UserConstants.INSTRUCTOR)
             {
-                // TODO Fix this
-                return Ok(new List<AttendenceInfoDto>());
+                var info = await _attendenceService.GetAttendenceInfoForInstructor(lectureCode);
+                return Ok(info);
             }
+
             List<AttendenceInfoDto> attendenceInfos = await _attendenceService.GetAttendencesInfo(userId, lectureCode);
             return Ok(attendenceInfos);
-
         }
     }
 }

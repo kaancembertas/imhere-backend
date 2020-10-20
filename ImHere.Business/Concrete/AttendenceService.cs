@@ -38,5 +38,23 @@ namespace ImHere.Business.Concrete
 
             return attendenceInfoList;
         }
+
+        public async Task<List<AttendenceInfoDto>> GetAttendenceInfoForInstructor(string lectureCode)
+        {
+            List<int> completedWeeks = await _attendenceRepository.GetCompletedAttendenceWeekInfo(lectureCode);
+            List<AttendenceInfoDto> attendenceInfos = new List<AttendenceInfoDto>();
+
+            for(int i= 1; i <= 14; i++)
+            {
+                Attendence attendence = new Attendence();
+                attendence.week = i;
+                attendence.status = completedWeeks.Contains(i) ? 
+                    AttendenceConstants.COMPLETED : 
+                    AttendenceConstants.NOT_COMPLETED;
+                attendenceInfos.Add(new AttendenceInfoDto(attendence));
+            }
+
+            return attendenceInfos;
+        }
     }
 }
