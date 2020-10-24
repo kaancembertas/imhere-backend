@@ -123,5 +123,15 @@ namespace ImHere.API.Controllers
             List<AttendenceInfoDto> attendenceInfos = await _attendenceService.GetAttendencesInfo(userId, lectureCode);
             return Ok(attendenceInfos);
         }
+
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(CheckExistsResponse),200)]
+        [HttpGet]
+        [Route("check/{email}")]
+        public async Task<IActionResult> checkEmail(string email)
+        {
+            bool isExists = await _userService.IsEmailExists(email);
+            return Ok(new CheckExistsResponse(isExists));
+        }
     }
 }

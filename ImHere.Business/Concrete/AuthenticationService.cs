@@ -39,7 +39,7 @@ namespace ImHere.Business.Concrete
 
 
             // Authentication başarılı
-            DateTime expireDate = DateTime.UtcNow.AddDays(14);
+            DateTime expireDate = DateTime.UtcNow.AddMinutes(15); // TODO: Change 
             var token = GenerateJwtToken(user, expireDate);
             var response = new AuthenticationResponse(token, expireDate);
 
