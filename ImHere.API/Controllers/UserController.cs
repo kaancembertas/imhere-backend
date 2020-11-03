@@ -18,21 +18,16 @@ namespace ImHere.API.Controllers
     public class UserController : BaseController
     {
         private IUserService _userService;
-        private ILectureService _lectureService;
-        private IAttendenceService _attendenceService;
         private readonly IMapper _mapper;
 
-        public UserController(
+        public UserController
+            (
             IUserService userService,
-            ILectureService lectureService,
-            IAttendenceService attendenceService,
             IHttpContextAccessor httpContextAccessor,
-            IMapper mapper)
-            : base(httpContextAccessor)
+            IMapper mapper
+            ) : base(httpContextAccessor)
         {
             _userService = userService;
-            _lectureService = lectureService;
-            _attendenceService = attendenceService;
             _mapper = mapper;
         }
 
@@ -79,53 +74,9 @@ namespace ImHere.API.Controllers
             return Ok(user);
         }
 
-        [Authorize]
-        [HttpGet]
-        [Route("[action]")]
-        [ProducesResponseType(typeof(List<LectureInfoDto>), 200)]
-        [ProducesResponseType(401)]
-        public async Task<IActionResult> Lectures()
-        {
-            int userId = AutenticatedUser.Id;
-            User user = await _userService.GetUserById(userId);
-            
-            if(user.role == UserConstants.INSTRUCTOR)
-            {
-                var instructorLectures = await _lectureService.GetInstructorLectures(userId);
-                return Ok(instructorLectures);
-            }
-
-            var userLectures = await _lectureService.GetStudentLectures(userId);
-            return Ok(userLectures);
-        }
-
-        [Authorize]
-        [HttpGet]
-        [Route("[action]/{lectureCode}")]
-        [ProducesResponseType(typeof(List<AttendenceInfoDto>), 200)]
-        [ProducesResponseType(typeof(ApiResponse), 404)]
-        [ProducesResponseType(401)]
-        public async Task<IActionResult> Attendence(string lectureCode)
-        {
-            bool isLectureExists = await _lectureService.IsLectureExists(lectureCode);
-            if (!isLectureExists)
-                return NotFound(new ApiResponse("Lecture could not be found!"));
-
-            int userId = AutenticatedUser.Id;
-            User user = await _userService.GetUserById(userId);
-
-            if(user.role == UserConstants.INSTRUCTOR)
-            {
-                var info = await _attendenceService.GetAttendenceInfoForInstructor(lectureCode);
-                return Ok(info);
-            }
-
-            List<AttendenceInfoDto> attendenceInfos = await _attendenceService.GetAttendencesInfo(userId, lectureCode);
-            return Ok(attendenceInfos);
-        }
 
         [AllowAnonymous]
-        [ProducesResponseType(typeof(CheckExistsResponse),200)]
+        [ProducesResponseType(typeof(CheckExistsResponse), 200)]
         [HttpGet]
         [Route("check/{email}")]
         public async Task<IActionResult> checkEmail(string email)

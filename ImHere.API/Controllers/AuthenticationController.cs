@@ -18,7 +18,8 @@ namespace ImHere.API.Controllers
 
         public AuthenticationController(
             IHttpContextAccessor httpContextAccessor,
-            IAuthenticationService authenticationService) : base(httpContextAccessor)
+            IAuthenticationService authenticationService
+            ) : base(httpContextAccessor)
         {
             _authenticationService = authenticationService;
         }
