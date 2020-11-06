@@ -60,5 +60,11 @@ namespace ImHere.Business.Concrete
             Lecture lecture = await _lectureRepository.GetLectureByCode(lectureCode);
             return lecture != null;
         }
+
+        public async Task<List<UserInfoDto>> GetStudentsByLecture(string lectureCode)
+        {
+            return await _lectureRepository.GetStudentsByLecture(lectureCode);
+
+        }
     }
 }

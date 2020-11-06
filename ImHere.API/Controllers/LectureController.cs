@@ -31,11 +31,11 @@ namespace ImHere.API.Controllers
 
         [Authorize]
         [HttpGet]
-        [ProducesResponseType(typeof(List<LectureInfoDto>), 200)]
-        [ProducesResponseType(401)]
+        [ProducesResponseType(typeof(List<LectureInfoDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Lecture()
         {
-            int userId = AutenticatedUser.Id;
+            int userId = AuthenticatedUser.Id;
             User user = await _userService.GetUserById(userId);
 
             if (user.role == UserConstants.INSTRUCTOR)
@@ -46,6 +46,31 @@ namespace ImHere.API.Controllers
 
             var userLectures = await _lectureService.GetStudentLectures(userId);
             return Ok(userLectures);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("[action]/{lectureCode}")]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(List<UserInfoDto>),StatusCodes.Status200OK)]
+        public async Task<IActionResult> Students(string lectureCode)
+        {
+            int userId = AuthenticatedUser.Id;
+            User user = await _userService.GetUserById(userId);
+            bool isLectureExists = await _lectureService.IsLectureExists(lectureCode);
+
+            if (user.role != UserConstants.INSTRUCTOR)
+            {
+                return Unauthorized();
+            }
+            if (!isLectureExists)
+            {
+                return NotFound(new ApiResponse("Lecture could not be found!"));
+            }
+
+
+            var studentList = await _lectureService.GetStudentsByLecture(lectureCode);
+            return Ok(studentList);
         }
     }
 }

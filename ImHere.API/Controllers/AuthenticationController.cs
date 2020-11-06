@@ -26,8 +26,8 @@ namespace ImHere.API.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [ProducesResponseType(typeof(AuthenticationResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Authenticate(AuthenticationRequest authenticationModel)
         {
             AuthenticationResponse response = await _authenticationService.Authenticate(authenticationModel);

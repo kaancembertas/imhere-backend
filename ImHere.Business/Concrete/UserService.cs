@@ -56,5 +56,11 @@ namespace ImHere.Business.Concrete
         {
             return await _userRepository.GetUserById(id);
         }
+
+        public async Task<bool> IsUserExists(int id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            return user != null;
+        }
     }
 }

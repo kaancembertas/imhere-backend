@@ -10,13 +10,13 @@ namespace ImHere.API.Controllers
 {
     public class BaseController : ControllerBase
     {
-        public AuthenticatedUserData AutenticatedUser;
+        public AuthenticatedUserData AuthenticatedUser;
 
         public BaseController(IHttpContextAccessor httpContextAccessor)
         {
             var UserId = httpContextAccessor.HttpContext.Items["UserId"];
             if (UserId != null)
-                AutenticatedUser = new AuthenticatedUserData((int)UserId);
+                AuthenticatedUser = new AuthenticatedUserData((int)UserId);
         }
     }
 }

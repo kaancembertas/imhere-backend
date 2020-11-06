@@ -28,5 +28,25 @@ namespace ImHere.DataAccess.Concrete
             }
         }
 
+        public async Task<List<UserInfoDto>> GetStudentsByLecture(string lectureCode)
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                var students = await (from userLectures in imHereDbContext.UserLectures
+                                      join user in imHereDbContext.Users
+                                      on userLectures.user_id equals user.id
+                                      where userLectures.lecture_code == lectureCode
+                                      select new UserInfoDto(
+                                          user.id,
+                                          user.no,
+                                          user.email,
+                                          user.name,
+                                          user.surname,
+                                          user.role,
+                                          user.image_url)).ToListAsync();
+                return students;
+            }
+        }
+
     }
 }

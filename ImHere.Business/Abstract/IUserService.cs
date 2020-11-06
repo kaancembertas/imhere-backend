@@ -16,5 +16,6 @@ namespace ImHere.Business.Abstract
         public Task<User> GetUserByNo(string no);
         public Task<bool> IsEmailExists(string email);
         public Task<bool> IsNoExists(string no);
+        public Task<bool> IsUserExists(int id);
     }
 }

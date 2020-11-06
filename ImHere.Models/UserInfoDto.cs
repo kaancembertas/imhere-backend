@@ -26,5 +26,23 @@ namespace ImHere.Models
             role = user.role;
             image_url = user.image_url;
         }
+
+        public UserInfoDto(
+            int id,
+            string no,
+            string email,
+            string name,
+            string surname,
+            int role,
+            string image_url)
+        {
+            this.id = id;
+            this.no = no;
+            this.email = email;
+            this.name = name;
+            this.surname = surname;
+            this.role = role;
+            this.image_url = image_url;
+        }
     }
 }

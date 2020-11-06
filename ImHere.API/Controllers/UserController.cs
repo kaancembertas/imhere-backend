@@ -33,8 +33,8 @@ namespace ImHere.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest user)
         {
             bool IsEMailExists = await _userService.IsEmailExists(user.email);
@@ -61,12 +61,12 @@ namespace ImHere.API.Controllers
         [Authorize]
         [HttpGet]
         [Route("[action]")]
-        [ProducesResponseType(typeof(UserInfoDto), 200)]
-        [ProducesResponseType(401)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(typeof(UserInfoDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Info()
         {
-            var user = await _userService.GetUserInfoById(AutenticatedUser.Id);
+            var user = await _userService.GetUserInfoById(AuthenticatedUser.Id);
             if (user == null)
             {
                 return NotFound();
@@ -76,7 +76,7 @@ namespace ImHere.API.Controllers
 
 
         [AllowAnonymous]
-        [ProducesResponseType(typeof(CheckExistsResponse), 200)]
+        [ProducesResponseType(typeof(CheckExistsResponse), StatusCodes.Status200OK)]
         [HttpGet]
         [Route("check/{email}")]
         public async Task<IActionResult> checkEmail(string email)
