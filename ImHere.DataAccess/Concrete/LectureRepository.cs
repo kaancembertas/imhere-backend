@@ -43,8 +43,17 @@ namespace ImHere.DataAccess.Concrete
                                           user.name,
                                           user.surname,
                                           user.role,
-                                          user.image_url)).ToListAsync();
+                                          user.image_url,
+                                          user.isSelectedLecture)).ToListAsync();
                 return students;
+            }
+        }
+
+        public async Task<List<Lecture>> GetAllLectures()
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                return await imHereDbContext.Lectures.ToListAsync();
             }
         }
 

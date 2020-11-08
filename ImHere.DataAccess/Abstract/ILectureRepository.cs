@@ -12,5 +12,6 @@ namespace ImHere.DataAccess.Abstract
         public Task<Lecture> GetLectureByCode(string code);
         public Task<List<Lecture>> GetInstructorLecturesById(int userId);
         public Task<List<UserInfoDto>> GetStudentsByLecture(string lectureCode);
+        public Task<List<Lecture>> GetAllLectures();
     }
 }

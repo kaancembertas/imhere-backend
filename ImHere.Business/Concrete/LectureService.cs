@@ -78,5 +78,19 @@ namespace ImHere.Business.Concrete
 
             return isSuccess;
         }
+
+        public async Task<List<LectureInfoDto>> GetAllLectures()
+        {
+            List<LectureInfoDto> lectureInfos = new List<LectureInfoDto>();
+            List<Lecture> allLectures = await _lectureRepository.GetAllLectures();
+
+            foreach (Lecture lecture in allLectures)
+            {
+                User instructor = await _userRepository.GetUserById(lecture.instructor_id);
+                lectureInfos.Add(new LectureInfoDto(lecture, instructor));
+            }
+
+            return lectureInfos;
+        }
     }
 }

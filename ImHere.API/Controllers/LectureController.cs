@@ -119,5 +119,16 @@ namespace ImHere.API.Controllers
                 return StatusCode(500, "Internal Server Error. Something went wrong when inserting to database!");
             }
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(List<LectureInfoDto>),StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAll()
+        {
+            var lectures = await _lectureService.GetAllLectures();
+            return Ok(lectures);
+        }
     }
 }

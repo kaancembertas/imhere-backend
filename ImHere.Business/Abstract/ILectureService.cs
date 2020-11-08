@@ -12,6 +12,7 @@ namespace ImHere.Business.Abstract
         public Task<List<LectureInfoDto>> GetInstructorLectures(int id);
         public Task<bool> IsLectureExists(string lectureCode);
         public Task<List<UserInfoDto>> GetStudentsByLecture(string lectureCode);
-        public Task<bool> SelectLectures(int userId,List<string> lectureCodes); 
+        public Task<bool> SelectLectures(int userId,List<string> lectureCodes);
+        public Task<List<LectureInfoDto>> GetAllLectures();
     }
 }

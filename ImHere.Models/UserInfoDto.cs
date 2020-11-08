@@ -15,6 +15,7 @@ namespace ImHere.Models
         public string surname { get; set; }
         public int role { get; set; }
         public string image_url { get; set; }
+        public bool isSelectedLecture { get; set; }
 
         public UserInfoDto(User user)
         {
@@ -25,6 +26,7 @@ namespace ImHere.Models
             surname = user.surname;
             role = user.role;
             image_url = user.image_url;
+            isSelectedLecture = user.isSelectedLecture;
         }
 
         public UserInfoDto(
@@ -34,7 +36,8 @@ namespace ImHere.Models
             string name,
             string surname,
             int role,
-            string image_url)
+            string image_url,
+            bool isSelectedLecture)
         {
             this.id = id;
             this.no = no;
@@ -43,6 +46,7 @@ namespace ImHere.Models
             this.surname = surname;
             this.role = role;
             this.image_url = image_url;
+            this.isSelectedLecture = isSelectedLecture;
         }
     }
 }
