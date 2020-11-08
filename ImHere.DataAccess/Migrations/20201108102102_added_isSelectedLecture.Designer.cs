@@ -4,14 +4,16 @@ using ImHere.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ImHere.DataAccess.Migrations
 {
     [DbContext(typeof(ImHereDbContext))]
-    partial class ImHereDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201108102102_added_isSelectedLecture")]
+    partial class added_isSelectedLecture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

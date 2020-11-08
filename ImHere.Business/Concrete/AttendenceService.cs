@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ImHere.Business.Concrete
 {
-    public class AttendenceService :IAttendenceService
+    public class AttendenceService : IAttendenceService
     {
         private IAttendenceRepository _attendenceRepository;
         public AttendenceService(IAttendenceRepository attendenceRepository)
@@ -20,6 +20,7 @@ namespace ImHere.Business.Concrete
 
         public async Task<List<AttendenceInfoDto>> GetAttendencesInfo(int userId, string lectureCode)
         {
+            int lastAttendenceWeek;
             List<AttendenceInfoDto> attendenceInfoList = new List<AttendenceInfoDto>();
             List<Attendence> attendences = await _attendenceRepository.GetAttendencesInfo(userId, lectureCode);
 
@@ -28,10 +29,19 @@ namespace ImHere.Business.Concrete
                 attendenceInfoList.Add(new AttendenceInfoDto(attendence));
             }
 
-            for(int i = 0; i < 14 - attendences.Count; i++)
+            if (attendences.Count != 0)
+            {
+                lastAttendenceWeek = attendences[attendences.Count - 1].week;
+            }
+            else
+            {
+                lastAttendenceWeek = 0;
+            }
+
+            for (int i = lastAttendenceWeek; i < 14; i++)
             {
                 Attendence missingAttendence = new Attendence();
-                missingAttendence.week = attendences.Count + 1 + i;
+                missingAttendence.week = i + 1;
                 missingAttendence.status = AttendenceConstants.NOT_PROCESSED;
                 attendenceInfoList.Add(new AttendenceInfoDto(missingAttendence));
             }
@@ -44,12 +54,12 @@ namespace ImHere.Business.Concrete
             List<int> completedWeeks = await _attendenceRepository.GetCompletedAttendenceWeekInfo(lectureCode);
             List<AttendenceInfoDto> attendenceInfos = new List<AttendenceInfoDto>();
 
-            for(int i= 1; i <= 14; i++)
+            for (int i = 1; i <= 14; i++)
             {
                 Attendence attendence = new Attendence();
                 attendence.week = i;
-                attendence.status = completedWeeks.Contains(i) ? 
-                    AttendenceConstants.COMPLETED : 
+                attendence.status = completedWeeks.Contains(i) ?
+                    AttendenceConstants.COMPLETED :
                     AttendenceConstants.NOT_COMPLETED;
                 attendenceInfos.Add(new AttendenceInfoDto(attendence));
             }

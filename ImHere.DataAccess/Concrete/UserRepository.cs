@@ -55,5 +55,16 @@ namespace ImHere.DataAccess.Concrete
                 return await imHereDbContext.Users.FirstOrDefaultAsync(u => u.id == id);
             }
         }
+
+        public async Task SetIsSelectedLectures(int userId,bool isSelected)
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                User user = await GetUserById(userId);
+                user.isSelectedLecture = isSelected;
+                imHereDbContext.Users.Update(user);
+                await imHereDbContext.SaveChangesAsync();
+            }
+        }
     }
 }

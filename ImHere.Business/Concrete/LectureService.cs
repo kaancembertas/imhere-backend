@@ -66,5 +66,17 @@ namespace ImHere.Business.Concrete
             return await _lectureRepository.GetStudentsByLecture(lectureCode);
 
         }
+
+        public async Task<bool> SelectLectures(int userId, List<string> lectureCodes)
+        {
+            bool isSuccess = await _userLectureRepository.AddUserLectures(userId, lectureCodes);
+
+            if (isSuccess)
+            {
+                await _userRepository.SetIsSelectedLectures(userId, isSuccess);
+            }
+
+            return isSuccess;
+        }
     }
 }

@@ -61,7 +61,7 @@ namespace ImHere.API.Controllers
         [HttpPost]
         [Route("[action]")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(AttendenceInfoDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<AttendenceInfoDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> AttendenceByUser([FromBody] AttendenceByUserRequest request)
         {

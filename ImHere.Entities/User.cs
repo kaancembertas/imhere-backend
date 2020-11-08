@@ -36,5 +36,7 @@ namespace ImHere.Entities
         [Required]
         public string image_url { get; set; }
 
+        public bool isSelectedLecture { get; set; }
+
     }
 }

@@ -28,6 +28,10 @@ namespace ImHere.DataAccess
             modelBuilder.Entity<Attendence>()
                 .HasKey(a => new { a.user_id, a.lecture_code, a.week });
 
+            modelBuilder.Entity<User>()
+                .Property(u => u.isSelectedLecture)
+                .HasDefaultValue(false);
+
             base.OnModelCreating(modelBuilder);
         }
 

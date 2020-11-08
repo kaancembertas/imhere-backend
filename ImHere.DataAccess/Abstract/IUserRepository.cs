@@ -14,5 +14,6 @@ namespace ImHere.DataAccess.Abstract
         Task<User> GetUserById(int id);
         Task<User> GetUserByEmail(string email);
         Task<User> GetUserByNo(string no);
+        Task SetIsSelectedLectures(int userId,bool isSelected);
     }
 }

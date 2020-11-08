@@ -52,7 +52,8 @@ namespace ImHere.API.Controllers
         [HttpGet]
         [Route("[action]/{lectureCode}")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(typeof(List<UserInfoDto>),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<UserInfoDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Students(string lectureCode)
         {
             int userId = AuthenticatedUser.Id;
@@ -71,6 +72,52 @@ namespace ImHere.API.Controllers
 
             var studentList = await _lectureService.GetStudentsByLecture(lectureCode);
             return Ok(studentList);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("[action]")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> SelectLectures(List<string> lectureCodes)
+        {
+            User user = await _userService.GetUserById(AuthenticatedUser.Id);
+
+            if (user.role == UserConstants.INSTRUCTOR)
+            {
+                return Unauthorized(new ApiResponse("Instructors cannot select lecture!"));
+            }
+
+            if (user.isSelectedLecture)
+            {
+                return BadRequest(new ApiResponse("User already selected lectures!"));
+            }
+
+            if (lectureCodes.Count == 0)
+            {
+                return BadRequest(new ApiResponse("There must be at least one lecture code!"));
+            }
+
+            foreach (string lectureCode in lectureCodes)
+            {
+                bool isExists = await _lectureService.IsLectureExists(lectureCode);
+                if (!isExists)
+                {
+                    return BadRequest(new ApiResponse("Invalid lecture in lectureCodes!"));
+                }
+            }
+
+            bool response = await _lectureService.SelectLectures(user.id, lectureCodes);
+            if (response)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return StatusCode(500, "Internal Server Error. Something went wrong when inserting to database!");
+            }
         }
     }
 }

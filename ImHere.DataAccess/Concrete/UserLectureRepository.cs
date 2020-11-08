@@ -18,5 +18,24 @@ namespace ImHere.DataAccess.Concrete
                 return await imHereDbContext.UserLectures.Where(ul => ul.user_id == userId).ToListAsync();
             }
         }
+
+        public async Task<bool> AddUserLectures(int userId, List<string> lectureCodes)
+        {
+            using (var imHereDbContext = new ImHereDbContext())
+            {
+                foreach(string lectureCode in lectureCodes)
+                {
+                    UserLecture userLecture = new UserLecture();
+                    userLecture.lecture_code = lectureCode;
+                    userLecture.user_id = userId;
+                    imHereDbContext.UserLectures.Add(userLecture);
+                }
+                
+                int numOfObjects = await imHereDbContext.SaveChangesAsync();
+                return numOfObjects > 0;
+            }
+        }
+
+
     }
 }
