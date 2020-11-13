@@ -19,5 +19,7 @@ namespace ImHere.Models
         public string surname { get; set; }
         [Required]
         public string image_url { get; set; }
+        [Required]
+        public string face_encoding { get; set; }
     }
 }

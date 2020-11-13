@@ -39,5 +39,6 @@ namespace ImHere.DataAccess
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<Attendence> Attendences { get; set; }
         public DbSet<UserLecture> UserLectures { get; set; }
+        public DbSet<FaceInfo> FaceInfos { get; set; }
     }
 }

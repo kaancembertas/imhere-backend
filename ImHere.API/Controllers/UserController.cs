@@ -18,16 +18,19 @@ namespace ImHere.API.Controllers
     public class UserController : BaseController
     {
         private IUserService _userService;
+        private IFaceInfoService _faceInfoService;
         private readonly IMapper _mapper;
 
         public UserController
             (
             IUserService userService,
+            IFaceInfoService faceInfoService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper
             ) : base(httpContextAccessor)
         {
             _userService = userService;
+            _faceInfoService = faceInfoService;
             _mapper = mapper;
         }
 
@@ -55,6 +58,7 @@ namespace ImHere.API.Controllers
 
             User _user = _mapper.Map<User>(user);
             await _userService.CreateUser(_user);
+            await _faceInfoService.createFaceInfo(_user.id, user.face_encoding);
             return NoContent();
         }
 
