@@ -18,12 +18,17 @@ namespace ImHere.Business.Concrete
             _faceInfoRepository = faceInfoRepository;
         }
 
-        public async Task createFaceInfo(int userId, string faceEncoding)
+        public async Task CreateFaceInfo(int userId, string faceEncoding)
         {
             FaceInfo faceInfo = new FaceInfo();
             faceInfo.user_id = userId;
             faceInfo.face_encoding = faceEncoding;
-            await _faceInfoRepository.createFaceInfo(faceInfo);
+            await _faceInfoRepository.CreateFaceInfo(faceInfo);
+        }
+
+        public async Task<List<FaceInfo>> GetFaceInfos()
+        {
+            return await _faceInfoRepository.GetFaceInfos();
         }
     }
 }

@@ -58,7 +58,7 @@ namespace ImHere.API.Controllers
 
             User _user = _mapper.Map<User>(user);
             await _userService.CreateUser(_user);
-            await _faceInfoService.createFaceInfo(_user.id, user.face_encoding);
+            await _faceInfoService.CreateFaceInfo(_user.id, user.face_encoding);
             return NoContent();
         }
 
