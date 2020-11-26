@@ -9,6 +9,6 @@ namespace ImHere.DataAccess.Abstract
     public interface IFaceInfoRepository
     {
         Task CreateFaceInfo(FaceInfo faceInfo);
-        Task<List<FaceInfo>> GetFaceInfos();
+        Task<List<FaceInfo>> GetFaceInfos(string lectureCode);
     }
 }

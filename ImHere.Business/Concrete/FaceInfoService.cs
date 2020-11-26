@@ -26,9 +26,9 @@ namespace ImHere.Business.Concrete
             await _faceInfoRepository.CreateFaceInfo(faceInfo);
         }
 
-        public async Task<List<FaceInfo>> GetFaceInfos()
+        public async Task<List<FaceInfo>> GetFaceInfos(string lectureCode)
         {
-            return await _faceInfoRepository.GetFaceInfos();
+            return await _faceInfoRepository.GetFaceInfos(lectureCode);
         }
     }
 }

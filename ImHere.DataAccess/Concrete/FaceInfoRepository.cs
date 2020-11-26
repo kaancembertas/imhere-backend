@@ -3,6 +3,7 @@ using ImHere.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +20,17 @@ namespace ImHere.DataAccess.Concrete
             }
         }
 
-        public async Task<List<FaceInfo>> GetFaceInfos()
+        public async Task<List<FaceInfo>> GetFaceInfos(string lectureCode)
         {
             using (var imHereDbContext = new ImHereDbContext())
             {
-                return await imHereDbContext.FaceInfos.ToListAsync();
+                List<int> userIds = await (from userLectures in imHereDbContext.UserLectures
+                                           where userLectures.lecture_code == lectureCode
+                                           select userLectures.user_id).ToListAsync();
+
+                return await imHereDbContext.FaceInfos
+                    .Where(fi => userIds.Contains(fi.user_id))
+                    .ToListAsync();
             }
         }
     }

@@ -9,6 +9,6 @@ namespace ImHere.Business.Abstract
     public interface IFaceInfoService
     {
         Task CreateFaceInfo(int userId, string faceEncoding);
-        Task<List<FaceInfo>> GetFaceInfos();
+        Task<List<FaceInfo>> GetFaceInfos(string lectureCode);
     }
 }

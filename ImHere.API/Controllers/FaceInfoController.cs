@@ -23,11 +23,12 @@ namespace ImHere.API.Controllers
             _faceInfoService = faceInfoService;
         }
 
-        [HttpGet]
+        //TODO: Add auth for instructor which gave the spesific lecture
+        [HttpGet("{lectureCode}")]
         [AllowAnonymous]
-        public async Task<List<FaceInfo>> GetFaceInfos()
+        public async Task<List<FaceInfo>> GetFaceInfos(string lectureCode)
         {
-            return await _faceInfoService.GetFaceInfos();
+            return await _faceInfoService.GetFaceInfos(lectureCode);
         }
     }
 }
