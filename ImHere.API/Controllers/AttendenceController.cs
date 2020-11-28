@@ -83,7 +83,6 @@ namespace ImHere.API.Controllers
             return Ok(attendenceInfos);
         }
 
-        //TODO: Add auth for instructor and lecture code check
         [Authorize]
         [HttpPost]
         [Route("[action]")]
