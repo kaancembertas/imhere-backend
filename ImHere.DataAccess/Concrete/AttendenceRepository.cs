@@ -37,5 +37,15 @@ namespace ImHere.DataAccess.Concrete
                 return weeks;
             }
         }
+
+        public async Task<bool> AddAttendence(List<Attendence> attendences)
+        {
+            using(var imHereDbContext = new ImHereDbContext())
+            {
+                await imHereDbContext.AddRangeAsync(attendences);
+                int numOfChanges = await imHereDbContext.SaveChangesAsync();
+                return numOfChanges > 0;
+            }
+        }
     }
 }

@@ -92,5 +92,16 @@ namespace ImHere.Business.Concrete
 
             return lectureInfos;
         }
+
+        public async Task<bool> IsStudentTakesLecture(int userId, string lectureCode)
+        {
+            return await _userLectureRepository.IsUserLectureExists(userId, lectureCode);
+        }
+
+        public async Task<bool> IsInstructorGivesLecture(int userId, string lectureCode)
+        {
+            Lecture lecture = await _lectureRepository.GetLectureByCode(lectureCode);
+            return lecture.instructor_id == userId;
+        }
     }
 }

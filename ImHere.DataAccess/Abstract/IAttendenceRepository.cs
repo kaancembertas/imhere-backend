@@ -13,5 +13,7 @@ namespace ImHere.DataAccess.Abstract
 
         // Returns list of week that the attendence is processed for spesific lecture
         public Task<List<int>> GetCompletedAttendenceWeekInfo(string lectureCode);
+
+        public Task<bool> AddAttendence(List<Attendence> attendences);
     }
 }

@@ -25,7 +25,6 @@ namespace ImHere.API.Controllers
                 IAttendenceService attendenceService,
                 ILectureService lectureService,
                 IUserService userService
-
             ) : base(httpContextAccessor)
         {
             _attendenceService = attendenceService;
@@ -82,6 +81,63 @@ namespace ImHere.API.Controllers
 
             List<AttendenceInfoDto> attendenceInfos = await _attendenceService.GetAttendencesInfo(request.userId, request.lectureCode);
             return Ok(attendenceInfos);
+        }
+
+        //TODO: Add auth for instructor and lecture code check
+        [Authorize]
+        [HttpPost]
+        [Route("[action]")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> AddAttendence([FromBody] AddAttendenceRequest request)
+        {
+            User user = await _userService.GetUserById(AuthenticatedUser.Id);
+
+            if(user.role != UserConstants.INSTRUCTOR)
+            {
+                return Unauthorized();
+            }
+
+            bool isInstructorGivesLecture = await _lectureService.IsInstructorGivesLecture(user.id, request.lectureCode);
+            if (!isInstructorGivesLecture)
+            {
+                return Unauthorized();
+            }
+
+            if (request.week < 1 || request.week > 14)
+            {
+                return BadRequest(new ApiResponse("Week must be between 1 and 14"));
+            }
+
+            bool isLectureExists = await _lectureService.IsLectureExists(request.lectureCode);
+            if (!isLectureExists)
+            {
+                return NotFound(new ApiResponse("Lecture could not be found!"));
+            }
+
+            bool isAttendenceCompleted = await _attendenceService.IsAttendenceCompleted(request.lectureCode, request.week);
+            if (isAttendenceCompleted)
+            {
+                return BadRequest(new ApiResponse("Attendence of spesific week is already completed!"));
+            }
+
+            foreach (int userId in request.userIds)
+            {
+                bool isUserExist = await _userService.IsUserExists(userId);
+                if (!isUserExist)
+                    return BadRequest(new ApiResponse("Some of the user id(s) is invalid!"));
+
+                bool isStudentTakesLecture = await _lectureService.IsStudentTakesLecture(userId, request.lectureCode);
+                if (!isStudentTakesLecture)
+                    return BadRequest(new ApiResponse("Some of the user(s) does not take the course/lecture!"));
+            }
+
+            await _attendenceService.AddAttendence(request.lectureCode, request.userIds, request.week);
+
+            return NoContent();
+
         }
     }
 }
