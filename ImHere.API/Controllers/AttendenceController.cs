@@ -113,7 +113,7 @@ namespace ImHere.API.Controllers
             bool isLectureExists = await _lectureService.IsLectureExists(request.lectureCode);
             if (!isLectureExists)
             {
-                return NotFound(new ApiResponse("Lecture could not be found!"));
+                return BadRequest(new ApiResponse("Lecture could not be found!"));
             }
 
             bool isAttendenceCompleted = await _attendenceService.IsAttendenceCompleted(request.lectureCode, request.week);

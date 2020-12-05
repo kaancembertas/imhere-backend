@@ -31,22 +31,33 @@ namespace ImHere.API.Controllers
         }
 
         [HttpGet("{lectureCode}")]
+        [ProducesResponseType(typeof(FaceInfo), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [Authorize]
         public async Task<IActionResult> GetFaceInfos(string lectureCode)
         {
+
+            
             User user = await _userService.GetUserById(AuthenticatedUser.Id);
-            if(user.role != UserConstants.INSTRUCTOR)
+            if (user.role != UserConstants.INSTRUCTOR)
             {
                 return Unauthorized();
             }
+            
 
+            bool isLectureExists = await _lectureService.IsLectureExists(lectureCode);
+            if (!isLectureExists)
+                return NotFound(new ApiResponse("Lecture could not be found!"));
+
+            
             bool isInstructorGivesLecture = await _lectureService.IsInstructorGivesLecture(user.id, lectureCode);
             if (!isInstructorGivesLecture)
             {
                 return Unauthorized();
             }
-
             
+
             var faceInfos = await _faceInfoService.GetFaceInfos(lectureCode);
             return Ok(faceInfos);
         }
