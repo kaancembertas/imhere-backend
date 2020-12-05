@@ -12,5 +12,6 @@ namespace ImHere.Business.Abstract
         public Task<List<AttendenceInfoDto>> GetAttendenceInfoForInstructor(string lectureCode);
         public Task<bool> AddAttendence(string lectureCode, List<int> joinedUserIds, int week);
         public Task<bool> IsAttendenceCompleted(string lectureCode, int week);
+        public Task AddAttendenceImage(string lectureCode, int week, string image_url);
     }
 }

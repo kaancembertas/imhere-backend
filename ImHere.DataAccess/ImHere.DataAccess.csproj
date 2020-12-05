@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20201113183252_added-face-encoding.Designer.cs" />
     <Compile Remove="Migrations\20201113191806_add-face-encoding.cs" />
     <Compile Remove="Migrations\20201113191806_add-face-encoding.Designer.cs" />
+    <Compile Remove="Migrations\20201205204646_added_attendenceImages.cs" />
+    <Compile Remove="Migrations\20201205204646_added_attendenceImages.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

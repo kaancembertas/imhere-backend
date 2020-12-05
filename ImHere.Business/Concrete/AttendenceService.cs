@@ -14,23 +14,33 @@ namespace ImHere.Business.Concrete
     {
         private IAttendenceRepository _attendenceRepository;
         private ILectureRepository _lectureRepository;
+        private IAttendenceImageRepository _attendenceImageRepository;
+
         public AttendenceService(
             IAttendenceRepository attendenceRepository,
-            ILectureRepository lectureRepository)
+            ILectureRepository lectureRepository,
+            IAttendenceImageRepository attendenceImageRepository)
         {
             _attendenceRepository = attendenceRepository;
             _lectureRepository = lectureRepository;
+            _attendenceImageRepository = attendenceImageRepository;
         }
 
         public async Task<List<AttendenceInfoDto>> GetAttendencesInfo(int userId, string lectureCode)
         {
             int lastAttendenceWeek;
+            AttendenceImage attendenceImage;
+            string image_url;
+
             List<AttendenceInfoDto> attendenceInfoList = new List<AttendenceInfoDto>();
             List<Attendence> attendences = await _attendenceRepository.GetAttendencesInfo(userId, lectureCode);
 
             foreach (Attendence attendence in attendences)
             {
-                attendenceInfoList.Add(new AttendenceInfoDto(attendence));
+                attendenceImage = await _attendenceImageRepository.GetAttendenceImage(lectureCode, attendence.week);
+                image_url = attendenceImage != null ? attendenceImage.image_url : null;
+
+                attendenceInfoList.Add(new AttendenceInfoDto(attendence, image_url));
             }
 
             if (attendences.Count != 0)
@@ -47,7 +57,10 @@ namespace ImHere.Business.Concrete
                 Attendence missingAttendence = new Attendence();
                 missingAttendence.week = i + 1;
                 missingAttendence.status = AttendenceConstants.NOT_PROCESSED;
-                attendenceInfoList.Add(new AttendenceInfoDto(missingAttendence));
+                attendenceImage = await _attendenceImageRepository.GetAttendenceImage(lectureCode,missingAttendence.week);
+                image_url = attendenceImage != null ? attendenceImage.image_url : null;
+
+                attendenceInfoList.Add(new AttendenceInfoDto(missingAttendence,image_url));
             }
 
             return attendenceInfoList;
@@ -57,6 +70,8 @@ namespace ImHere.Business.Concrete
         {
             List<int> completedWeeks = await _attendenceRepository.GetCompletedAttendenceWeekInfo(lectureCode);
             List<AttendenceInfoDto> attendenceInfos = new List<AttendenceInfoDto>();
+            AttendenceImage attendenceImage;
+            string image_url;
 
             for (int i = 1; i <= 14; i++)
             {
@@ -65,7 +80,11 @@ namespace ImHere.Business.Concrete
                 attendence.status = completedWeeks.Contains(i) ?
                     AttendenceConstants.COMPLETED :
                     AttendenceConstants.NOT_COMPLETED;
-                attendenceInfos.Add(new AttendenceInfoDto(attendence));
+
+
+                attendenceImage = await _attendenceImageRepository.GetAttendenceImage(lectureCode, attendence.week);
+                image_url = attendenceImage != null ? attendenceImage.image_url : null;
+                attendenceInfos.Add(new AttendenceInfoDto(attendence,image_url));
             }
 
             return attendenceInfos;
@@ -93,6 +112,16 @@ namespace ImHere.Business.Concrete
             }
 
             return await _attendenceRepository.AddAttendence(AttendenceList);
+        }
+
+        public async Task AddAttendenceImage(string lectureCode, int week, string image_url)
+        {
+            AttendenceImage attendenceImage = new AttendenceImage();
+            attendenceImage.lectureCode = lectureCode;
+            attendenceImage.week = week;
+            attendenceImage.image_url = image_url;
+
+            await _attendenceImageRepository.AddAttendenceImage(attendenceImage);
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 
 namespace ImHere.DataAccess
 {
-    public class ImHereDbContext: DbContext
+    public class ImHereDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +32,9 @@ namespace ImHere.DataAccess
                 .Property(u => u.isSelectedLecture)
                 .HasDefaultValue(false);
 
+            modelBuilder.Entity<AttendenceImage>()
+                .HasKey(ai => new { ai.lectureCode, ai.week });
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -40,5 +43,6 @@ namespace ImHere.DataAccess
         public DbSet<Attendence> Attendences { get; set; }
         public DbSet<UserLecture> UserLectures { get; set; }
         public DbSet<FaceInfo> FaceInfos { get; set; }
+        public DbSet<AttendenceImage> AttendenceImages { get; set; }
     }
 }

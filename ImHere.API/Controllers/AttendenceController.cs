@@ -134,6 +134,7 @@ namespace ImHere.API.Controllers
             }
 
             await _attendenceService.AddAttendence(request.lectureCode, request.userIds, request.week);
+            await _attendenceService.AddAttendenceImage(request.lectureCode, request.week, request.image_url);
 
             return NoContent();
 

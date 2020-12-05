@@ -86,6 +86,7 @@ namespace ImHere.API
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IFaceInfoRepository, FaceInfoRepository>();
             services.AddSingleton<IFaceInfoService, FaceInfoService>();
+            services.AddSingleton<IAttendenceImageRepository, AttendenceImageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
