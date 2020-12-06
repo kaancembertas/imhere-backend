@@ -32,7 +32,7 @@ namespace ImHere.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerDocument();
+            services.AddSwaggerDocument(settings => settings.Title = "I'm Here API");
             services.AddHttpContextAccessor();
             services.AddAutoMapper(typeof(Startup));
 
