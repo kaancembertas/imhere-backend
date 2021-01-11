@@ -1,4 +1,7 @@
-﻿using ImHere.API.Helpers;
+﻿// Author: Kaan Çembertaş 
+// No: 200001684
+
+using ImHere.API.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

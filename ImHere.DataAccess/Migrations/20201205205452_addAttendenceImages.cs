@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿// Author: Kaan Çembertaş 
+// No: 200001684
+
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ImHere.DataAccess.Migrations
 {

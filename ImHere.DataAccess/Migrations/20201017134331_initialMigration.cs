@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Author: Kaan Çembertaş 
+// No: 200001684
+
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ImHere.DataAccess.Migrations

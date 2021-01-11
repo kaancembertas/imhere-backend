@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.API", "ImHere.API\Im
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.Models", "ImHere.Models\ImHere.Models.csproj", "{A60E98F3-136E-4323-A6CF-CEF2B98B03D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImHere.Helpers", "ImHere.Helpers\ImHere.Helpers.csproj", "{CB6DE1B0-3621-4473-8890-693491D5ABAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImHere.Helpers", "ImHere.Helpers\ImHere.Helpers.csproj", "{CB6DE1B0-3621-4473-8890-693491D5ABAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5951047E-5429-481C-BFBB-EB83A2C2D7E6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

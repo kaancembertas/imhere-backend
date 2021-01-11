@@ -1,4 +1,7 @@
-﻿using ImHere.DataAccess.Abstract;
+﻿// Author: Kaan Çembertaş 
+// No: 200001684
+
+using ImHere.DataAccess.Abstract;
 using ImHere.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

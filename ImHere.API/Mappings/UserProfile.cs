@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿// Author: Kaan Çembertaş 
+// No: 200001684
+
+using AutoMapper;
 using ImHere.Entities;
 using ImHere.Models;
 using System;
