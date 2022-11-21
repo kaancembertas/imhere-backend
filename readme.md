@@ -1,5 +1,5 @@
 
-# I'm Here Mobile
+# I'm Here Backend
 
 The goal of the project is to take attendances based on face recognition algorithms. In this project the instructors
 can easily take attendance of the class by taking photo of the students by using mobile app. Moreover the students can easily track their
